@@ -1,4 +1,4 @@
-# BlenderExtraTools - Blender Add-on with extra tools.
+# Blender Extra Tools - Blender Add-on with extra tools.
 # Copyright (C) 2021  Andrei Alexeenco (https://github.com/aalexeenco)
 #
 # This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@ bl_info = {
     "author": "aalexeenco",
     "version": (1, 0),
     "blender": (2, 80, 0),
-    "description": "Collection of Extra tools for mesh and objects manipulation and other actions.",
+    "description": "Extra tools and features.",
     "warning": "",
-    "wiki_url": "",
+    "doc_url": "",
     "category": "Object",
 }
 
