@@ -4,6 +4,7 @@
 name: Python application
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
@@ -34,7 +35,3 @@ jobs:
     - name: Run tests in python env
       run: |
         python -m unittest -v
- 
- - name: Test with pytest
-      run: |
-        pytest
