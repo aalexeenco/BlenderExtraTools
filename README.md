@@ -12,14 +12,20 @@
 In 3D View / Object Mode:
 
 * Select objects then `Object` > `Make Links` > `Link materials directly to the object`
-* `Object` > `Rename all Mesh Data to match Object name`
+* `Object` > `Rename all Mesh Data to match linked Object name`
 
 ## Development
 
 Add-on source scripts are in the [blender_extra_tools](./blender_extra_tools) package. 
 
-Optionally, install [fake-bpy-module-2.92](https://pypi.org/project/fake-bpy-module-2.92/) 
-to remove Python linter warnings about missing `bpy` module.
+### Prerequisites
+
+Install [fake-bpy-module-2.92](https://pypi.org/project/fake-bpy-module-2.92/) 
+to remove Python errors about missing `bpy` module.
+
+```
+pip install -r requirements.txt
+```
 
 ### Debugging
 
