@@ -1,7 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
-name: Python application
+name: Add-on CI
 
 on:
   workflow_dispatch:
@@ -32,6 +29,11 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Run tests in python env
+    - name: Run tests in Python env
       run: |
         python -m unittest -v
+    - name: Run tests in Blender
+      uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
+      with:
+        entrypoint: /bin/sh
+        args: blender -b -P /github/workspace/scripts/run_bl_tests_in_blender.py
