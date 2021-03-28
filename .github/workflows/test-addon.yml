@@ -35,5 +35,5 @@ jobs:
     - name: Run tests in Blender
       uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
       with:
-        entrypoint: /bin/sh
-        args: blender -b -P /github/workspace/scripts/run_bl_tests_in_blender.py
+        entrypoint: /bin/bash
+        args: blender -b -P scripts/run_bl_tests_in_blender.py
