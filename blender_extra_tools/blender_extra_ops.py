@@ -66,7 +66,7 @@ class OBJECT_OT_rename_all_meshes_to_match_linked_object(bpy.types.Operator):
     bl_idname = "object.rename_all_meshes_to_match_linked_object"
     bl_label = "Rename all Mesh Data to match linked Object name"
     bl_description = """
-    Rename each Mesh data-blocks linked to a single object with mismatched
+    Rename each Mesh data-block linked to a single object with mismatched
     name to match the linked object's name"""
     bl_options = {'REGISTER', 'UNDO'}
 
