@@ -32,7 +32,7 @@ jobs:
     - name: Run tests in Python env
       run: |
         python -m unittest -v
-    - name: Run tests in Blender
+    - name: Run tests in Blender docker container
       uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
       with:
-        args: blender -b -P scripts/run_bl_tests_in_blender.py
+        args: -it blender -b -P scripts/run_bl_tests_in_blender.py
