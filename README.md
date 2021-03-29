@@ -58,11 +58,17 @@ in Blender execute the following command from the repository root:
     blender -b -P scripts/run_bl_tests_in_blender.py
     ```
 
+    or using Docker containers, e.g.
+
+    ```
+    docker run -it --rm --workdir /work -v <path to repository root>:/work nytimes/blender:2.92-cpu-ubuntu18.04 blender -b -P scripts/run_bl_tests_in_blender.py
+    ```
+
 * To run tests from a single Blender test script file (file matching `bl_test*.py`) 
 in Blender which has the Add-on installed already execute the following command from the repository root:
 
     ```
-    blender -b -P tests/bl_test_<test name>.py
+    blender -b -P tests/bl_test_<test suite>.py
     ```
 
     Alternatively, to run tests from within VS Code first start debuggable
@@ -74,6 +80,7 @@ in Blender which has the Add-on installed already execute the following command 
 * [VSCode](https://code.visualstudio.com/) / [Blender Development][1]
 * [fake-bpy-module-2.92](https://pypi.org/project/fake-bpy-module-2.92/)
 * [flake8](https://flake8.pycqa.org/en/latest/)
+* [rd-blender-docker](https://github.com/nytimes/rd-blender-docker)
 
 ## License
 [GPL-3.0 License](./LICENSE)
