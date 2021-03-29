@@ -72,7 +72,7 @@ if os.path.basename(sys.argv[0]).startswith("blender"):
 
     if remove_addon_on_exit:
         print("Removing Add-on...", end="", flush=True)
-        path_user_scripts_addons = bpy.utils.user_resource('SCRIPTS', "addons", create=True)  # noqa E501
+        path_user_scripts_addons = bpy.utils.user_resource('SCRIPTS', "addons")  # noqa E501
         path_addon = os.path.abspath(
             os.path.join(path_user_scripts_addons, f"{ADDON}")
         )
