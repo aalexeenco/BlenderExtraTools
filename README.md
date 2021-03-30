@@ -1,5 +1,5 @@
 # Blender Extra Tools Add-on
-![Add-on CI](./actions/workflows/test-addon.yml/badge.svg)
+![Add-on CI](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/test-addon.yml/badge.svg)
 
 [Blender](https://www.blender.org/) Add-on with extra tools and features.
 
