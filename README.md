@@ -1,5 +1,6 @@
 # Blender Extra Tools Add-on
-![Add-on CI](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/test-addon.yml/badge.svg)
+[![GitHub version](https://badge.fury.io/gh/aalexeenco%2FBlenderExtraTools.svg)](https://github.com/aalexeenco/BlenderExtraTools/releases/latest)
+[![tests](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/test-addon.yml/badge.svg)](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/test-addon.yml)
 
 [Blender](https://www.blender.org/) Add-on with extra tools and features.
 
@@ -19,7 +20,7 @@ In 3D View / Object Mode:
 
 ## Development
 
-Add-on source scripts are in the [blender_extra_tools](./blender_extra_tools) package. 
+Add-on source scripts are located in the [blender_extra_tools](./blender_extra_tools) package. 
 
 ### Prerequisites
 
@@ -44,7 +45,7 @@ Add-on [`blender_extra_tools`](./blender_extra_tools) package directory:
 
 ### Running the tests
 
-Test scripts are located in separate sibling [tests](./tests) package. 
+Test scripts are located in the separate sibling [tests](./tests) package. 
 
 * To run all the tests which do not require Blender API (files matching `test*.py`)
 execute the following command from the repository root:
@@ -83,6 +84,7 @@ in Blender which has the Add-on installed already execute the following command 
 * [fake-bpy-module-2.92](https://pypi.org/project/fake-bpy-module-2.92/)
 * [flake8](https://flake8.pycqa.org/en/latest/)
 * [rd-blender-docker](https://github.com/nytimes/rd-blender-docker)
+* [Git Release](https://github.com/marketplace/actions/git-release) - A GitHub Action for creating a GitHub Release with Assets and Changelog
 
 ## License
 [GPL-3.0 License](./LICENSE)
