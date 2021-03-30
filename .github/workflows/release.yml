@@ -13,8 +13,6 @@ on:
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
-    env:
-      ADDON_SRC_DIR: "blender_extra_tools"
     steps:
       - name: Set GITHUB_REF manually
         if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -32,10 +30,13 @@ jobs:
           cp LICENSE $ADDON_SRC_DIR
           mkdir build
           zip -r build/addon_$ADDON_SRC_DIR.zip $ADDON_SRC_DIR
+        env:
+          ADDON_SRC_DIR: "blender_extra_tools"
       - name: Create Release and upload assets
         uses: docker://antonyurchenko/git-release:latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REF: refs/tags/${{ github.event.inputs.tag }}
           ALLOW_TAG_PREFIX: "true"
         with:
           args: build/*.zip
