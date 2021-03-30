@@ -7,7 +7,8 @@
 
 ### Installation
 
-`Edit` > `Preferences` > `Add-ons` > `Install...`
+Download the [latest](https://github.com/aalexeenco/BlenderExtraTools/releases/latest/download/addon_blender_extra_tools.zip) version and install in Blender menu
+`Edit` > `Preferences` > `Add-ons` tab > click `Install...` button and select the downloaded zip file.
 
 ### Usage
 

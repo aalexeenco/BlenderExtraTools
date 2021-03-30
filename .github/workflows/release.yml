@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+    - "*"
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    env:
+      ADDON_SRC_DIR: "blender_extra_tools"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          cp LICENSE $ADDON_SRC_DIR
+          mkdir build
+          zip -r build/addon_$ADDON_SRC_DIR.zip $ADDON_SRC_DIR
+      - name: Create Release and upload assets
+        uses: docker://antonyurchenko/git-release:latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: build/*.zip
