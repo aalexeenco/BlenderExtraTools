@@ -44,8 +44,7 @@ Add-on [`blender_extra_tools`](./blender_extra_tools) package directory:
 
 ### Running the tests
 
-To avoid issues with module imports, test scripts are located in the [blender_extra_tools.tests](./blender_extra_tools/tests) 
-sub-package. 
+Test scripts are located in separate sibling [tests](./tests) package. 
 
 * To run all the tests which do not require Blender API (files matching `test*.py`)
 execute the following command from the repository root:
