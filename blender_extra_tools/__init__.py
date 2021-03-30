@@ -20,7 +20,7 @@ from . import blender_extra_ops
 bl_info = {
     "name": "Blender Extra Tools",
     "author": "aalexeenco",
-    "version": (1, 0),
+    "version": (1, 0, 0),
     "blender": (2, 80, 0),
     "description": "Extra tools and features.",
     "warning": "",

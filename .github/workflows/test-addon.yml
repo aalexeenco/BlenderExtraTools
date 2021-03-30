@@ -3,6 +3,9 @@ name: Add-on CI
 on:
   workflow_dispatch:
   push:
+    paths:
+    - "**.py"
+    - "requirements.txt"
     branches: [ main ]
   pull_request:
     branches: [ main ]
