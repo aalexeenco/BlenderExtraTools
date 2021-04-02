@@ -1,0 +1,45 @@
+name: docs-publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version (tag)
+        required: true
+
+jobs:
+  publish_docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Build sphinx docs
+      run: |
+        cd docs
+        make
+      env:
+        SPHINXOPTS: -D release=1.0 -D html_theme_options.nav_title="Blender Extra Tools v1.0"
+    - name: Checkout gh-pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: Copy docs version {{ github.event.inputs.version }}
+      run: |
+        cp -r build gh-pages/{{ github.event.inputs.version }}
+    - name: Push changes
+      if: ${{ !env.ACT }}
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
+        directory: gh-pages
