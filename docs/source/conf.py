@@ -33,7 +33,6 @@ release = "x.y.z"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.githubpages",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -60,6 +59,7 @@ html_theme_options = {
     "repo_name": "BlenderExtraTools",
     "logo_icon": "&#x1f6e0",
     "globaltoc_depth": 2,
+    "nav_title": "Blender Extra Tools",
     "heroes": {
         "index": "Blender Add-on with extra tools and features."
     },
@@ -81,3 +81,11 @@ html_sidebars = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+
+def config_inited_handler(app, config):
+    config.html_theme_options["nav_title"] += " " + config.release
+
+
+def setup(app):
+    app.connect("config-inited", config_inited_handler)
