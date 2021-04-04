@@ -64,7 +64,7 @@ html_theme_options = {
         "index": "Blender Add-on with extra tools and features."
     },
     "version_dropdown": True,
-    "version_json": "_static/versions.json",
+    "version_json": "../versions.json",
 }
 
 # MaterialTheme config
