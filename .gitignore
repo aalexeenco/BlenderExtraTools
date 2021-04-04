@@ -131,3 +131,7 @@ dmypy.json
 
 # VS Code specific
 .vscode/settings.json
+
+# act (GitHub Actions local tester)
+.act/
+.actrc
