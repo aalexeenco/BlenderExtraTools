@@ -1,6 +1,6 @@
 # Blender Extra Tools Add-on
 [![GitHub version](https://badge.fury.io/gh/aalexeenco%2FBlenderExtraTools.svg)](https://github.com/aalexeenco/BlenderExtraTools/releases/latest)
-[![tests](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/test-addon.yml/badge.svg)](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml)
+[![tests](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml/badge.svg)](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml)
 
 [Blender](https://www.blender.org/) Add-on with extra tools and features.
 
