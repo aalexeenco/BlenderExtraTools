@@ -1,45 +1,77 @@
-name: docs-publish
+name: docs
 
 on:
+  push:
+    tags:
+    - "v?.?.?"
+
   workflow_dispatch:
     inputs:
-      version:
-        description: Version (tag)
+      tag:
+        description: Tag (version)
         required: true
 
 jobs:
   publish_docs:
+
     runs-on: ubuntu-latest
     
     steps:
+    - name: Parse docs version
+      id: docs-version
+      uses: actions/github-script@v3
+      with:
+        result-encoding: string
+        script: |
+          const ref = context.ref
+          console.log(`Evaluating ref='${ ref }'`)
+          const tag = ref.startsWith("refs/tags")
+            ? ref.substring(10) : context.payload.inputs.tag
+          return tag
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        ref: refs/tags/${{ steps.docs-version.outputs.result }}
+        path: ./main
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2.2.1
       with:
         python-version: 3.9
     - name: Install dependencies
+      working-directory: ./main
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Build sphinx docs
+      working-directory: ./main/docs
       run: |
-        cd docs
-        make
-      env:
-        SPHINXOPTS: -D release=1.0 -D html_theme_options.nav_title="Blender Extra Tools v1.0"
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        sphinx-build -M html source build -D release=${{ steps.docs-version.outputs.result }}
     - name: Checkout gh-pages
       uses: actions/checkout@v2
       with:
         ref: gh-pages
-        path: gh-pages
-    - name: Copy docs version {{ github.event.inputs.version }}
+        path: ./publish
+    - name: Publish docs
+      working-directory: ./publish
+      env:
+        RELEASE: ${{ steps.docs-version.outputs.result }}
       run: |
-        cp -r build gh-pages/{{ github.event.inputs.version }}
-    - name: Push changes
-      if: ${{ !env.ACT }}
-      uses: ad-m/github-push-action@v0.6
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
-        directory: gh-pages
+        rm -rf ./$RELEASE
+        cp -r ../main/docs/build/html ./$RELEASE
+        echo "{ " > versions.json
+        find . -maxdepth 1 -mindepth 1 -type d -name "v?.?.?" | sort -r | while read dir; do
+          echo "\"${dir##*/}\": \"$dir\", " >> versions.json
+        done
+        echo "}" >> versions.json
+        git add .
+        git config --local user.name "github-actions"
+        git config --local user.email "actions@github.com"
+        git commit -m "Publish docs $RELEASE"
+    - name: Deploy to gh-pages
+      working-directory: ./publish
+      run: |
+        if [ $ACT ]; then
+          dry_run="-n"
+        fi
+        git push $dry_run
