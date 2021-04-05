@@ -28,14 +28,16 @@ class OBJECT_OT_link_all_materials_to_object(bpy.types.Operator):
     make corresponding material assigned to the slot.
     For example, if slot link is set to Object and material is linked and then
     link type is changed to Mesh, but no material is linked to mesh for
-    the given slot index (i.e. is is None), then executing this operator will
+    the given slot index (i.e. iт is None), then executing this operator will
     restore slot link type back to Object, but will not unlink the material
     which was previously linked to the object for the given slot index.
     """
+
     bl_idname = "object.link_all_materials_to_object"
+    """Operator id used to register it in `bpy.ops`"""
+
     bl_label = "Link materials directly to the object"
-    bl_description = """
-    Link materials currently linked to the object's data
+    bl_description = """Link materials currently linked to the object's data
     directly to the object too"""
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -63,11 +65,13 @@ class OBJECT_OT_rename_all_meshes_to_match_linked_object(bpy.types.Operator):
     """
     Renames all Mesh data-blocks to match their single linked object's name.
     """
+
     bl_idname = "object.rename_all_meshes_to_match_linked_object"
+    """Operator id used to register it in `bpy.ops`"""
+
     bl_label = "Rename all Mesh Data to match linked Object name"
-    bl_description = """
-    Rename each Mesh data-block linked to a single object with mismatched
-    name to match the linked object's name"""
+    bl_description = """Rename each Mesh data-block linked to a single object
+    with mismatched name to match the linked object's name"""
     bl_options = {'REGISTER', 'UNDO'}
 
     @staticmethod
