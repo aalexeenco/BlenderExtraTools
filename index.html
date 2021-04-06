@@ -99,7 +99,7 @@
       </header>
 
       <main class="px-3">
-        <h1>Blender&reg; Add-on with extra bells and whistles.</h1>
+        <h1>Blender<small><sup>®</sup></small> Add-on with extra bells and whistles.</h1>
         <p class="lead">
             Adds new tools for mesh and object manipulation.
         </p>
@@ -134,7 +134,7 @@
         .then(data => {
           const versions = Object.getOwnPropertyNames(data);
           if (versions.length > 0) {
-            const latestDocsUrl = data[versions[0]] + "/";
+            const latestDocsUrl = data[versions[0]];
             document.getElementById("doc-link").href = latestDocsUrl;
             document.getElementById("btn-get-started").href = latestDocsUrl + "getting-started.html";
           }
