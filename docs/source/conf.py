@@ -61,7 +61,7 @@ html_theme_options = {
     "globaltoc_depth": 2,
     "nav_title": "Blender Extra Tools",
     "heroes": {
-        "index": "Blender Add-on with extra tools and features."
+        "index": "Blender<small><sup>®</sup></small> Add-on with extra tools and features."
     },
     "version_dropdown": True,
     "version_json": "../versions.json",
