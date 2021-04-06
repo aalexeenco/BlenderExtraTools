@@ -59,10 +59,12 @@ jobs:
       run: |
         rm -rf ./$RELEASE
         cp -r ../main/docs/build/html ./$RELEASE
-        echo "{ " > versions.json
+        echo "{" > versions.json
         find . -maxdepth 1 -mindepth 1 -type d -name "v?.?.?" | sort -r | while read dir; do
-          echo "\"${dir##*/}\": \"$dir\", " >> versions.json
+          echo "  \"${dir##*/}\": \"$dir/\"," >> versions.json
         done
+        truncate -s -2 versions.json
+        echo >> versions.json
         echo "}" >> versions.json
         git add .
         git config --local user.name "github-actions"
