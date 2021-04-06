@@ -24,7 +24,7 @@ bl_info = {
     "blender": (2, 80, 0),
     "description": "Extra tools and features.",
     "warning": "",
-    "doc_url": "https://aalexeenco.github.io/BlenderExtraTools/v1.0.0",
+    "doc_url": "https://aalexeenco.github.io/BlenderExtraTools/v1.0.0/",
     "category": "Object",
 }
 
