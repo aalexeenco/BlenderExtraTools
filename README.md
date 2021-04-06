@@ -1,4 +1,5 @@
-# Blender Extra Tools Add-on
+# Blender&reg; Extra Tools Add-on
+
 [![GitHub version](https://badge.fury.io/gh/aalexeenco%2FBlenderExtraTools.svg)](https://github.com/aalexeenco/BlenderExtraTools/releases/latest)
 [![tests](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml/badge.svg)](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml)
 
@@ -8,7 +9,7 @@
 
 ### Installation
 
-Download the [latest](https://github.com/aalexeenco/BlenderExtraTools/releases/latest/download/addon_blender_extra_tools.zip) version and install in Blender menu
+Download the [latest](https://github.com/aalexeenco/BlenderExtraTools/releases/latest/download/addon_blender_extra_tools.zip) version and install in Blender by clicking on menu
 `Edit` > `Preferences` > `Add-ons` tab > click `Install...` button and select the downloaded zip file.
 
 ### Usage
@@ -78,13 +79,21 @@ in Blender which has the Add-on installed already execute the following command 
     Blender instance by executing `Blender: Start` command,
     open the test file and then execute [`Blender: Run Script`][2] command.
 
+### Documentation
+
+See this [wiki page](https://github.com/aalexeenco/BlenderExtraTools/wiki/Documentation) on how to generate and publish documentation on GitHub Pages.
+
 ## Built With
 
 * [VSCode](https://code.visualstudio.com/) / [Blender Development][1]
 * [fake-bpy-module-2.92](https://pypi.org/project/fake-bpy-module-2.92/)
 * [flake8](https://flake8.pycqa.org/en/latest/)
+* [sphinx](https://pypi.org/project/Sphinx/)
+* [sphinx-material](https://pypi.org/project/sphinx-material/)
 * [rd-blender-docker](https://github.com/nytimes/rd-blender-docker)
-* [Git Release](https://github.com/marketplace/actions/git-release) - A GitHub Action for creating a GitHub Release with Assets and Changelog
+* [act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
+* [Git Release](https://github.com/marketplace/actions/git-release) -
+A GitHub Action for creating a GitHub Release with Assets and Changelog
 
 ## License
 [GPL-3.0 License](./LICENSE)
