@@ -134,7 +134,7 @@
         .then(data => {
           const versions = Object.getOwnPropertyNames(data);
           if (versions.length > 0) {
-            const latestDocsUrl = data[versions[0]] + "/";
+            const latestDocsUrl = data[versions[0]];
             document.getElementById("doc-link").href = latestDocsUrl;
             document.getElementById("btn-get-started").href = latestDocsUrl + "getting-started.html";
           }
