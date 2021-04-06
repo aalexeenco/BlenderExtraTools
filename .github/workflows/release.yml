@@ -5,11 +5,30 @@ on:
     tags:
     - "v?.?.?"
 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag (version)
+        required: true
+
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
     steps:
+      - name: Parse docs version
+        id: get-tag
+        uses: actions/github-script@v3
+        with:
+          result-encoding: string
+          script: |
+            const ref = context.ref
+            console.log(`Evaluating ref='${ ref }'`)
+            const tag = ref.startsWith("refs/tags")
+              ? ref.substring(10) : context.payload.inputs.tag
+            return tag
       - uses: actions/checkout@v2
+        with:
+          ref: refs/tags/${{ steps.get-tag.outputs.result }}
       - name: Build
         env:
           ADDON_SRC_DIR: blender_extra_tools
