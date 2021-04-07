@@ -40,7 +40,7 @@ jobs:
       uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
       with:
         entrypoint: /bin/sh
-        args: -c ${BLENDERPIP} install --no-cache-dir coverage && blender -b -P scripts/run_bl_tests_in_blender.py
+        args: -c "${BLENDERPIP} install --no-cache-dir coverage && blender -b -P scripts/run_bl_tests_in_blender.py"
     - name: Combine Coverage results
       run: |
         coverage combine
