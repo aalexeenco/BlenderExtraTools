@@ -39,7 +39,7 @@ def addon_enable_if_not_loaded():
 @contextmanager
 def code_coverage():
     from coverage import Coverage
-    cov = Coverage(source_pkgs=[ADDON], data_suffix="blender")
+    cov = Coverage(data_suffix="blender")
     cov.start()
     print("Code coverage started")
     try:

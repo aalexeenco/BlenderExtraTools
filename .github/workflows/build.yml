@@ -35,12 +35,13 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Cover tests in non-Blender env
       run: |
-        coverage run --source="blender_extra_tools" -m unittest -v
+        coverage run -m unittest -v
+        mv .coverage .coverage.non-blender
     - name: Cover tests inside Blender env
       uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
       with:
         entrypoint: /bin/sh
-        args: -c "${BLENDERPIP} install --no-cache-dir coverage && blender -b -P scripts/run_bl_tests_in_blender.py"
+        args: scripts/cover_bl_tests_in_blender.sh
     - name: Combine Coverage results
       run: |
         coverage combine

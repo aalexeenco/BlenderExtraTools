@@ -1,0 +1,19 @@
+[run]
+branch = True
+source_pkgs =
+    blender_extra_tools
+
+[paths]
+source = 
+    .
+    /**/.config/blender/*/scripts/addons
+
+[report]
+exclude_lines =
+    if self.debug:
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
+ignore_errors = True
+omit =
+    tests/*
