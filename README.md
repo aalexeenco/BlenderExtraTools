@@ -2,6 +2,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/aalexeenco%2FBlenderExtraTools.svg)](https://github.com/aalexeenco/BlenderExtraTools/releases/latest)
 [![tests](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml/badge.svg)](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/aalexeenco/BlenderExtraTools/branch/main/graph/badge.svg?token=N3HZMD0G7G)](https://codecov.io/gh/aalexeenco/BlenderExtraTools)
 
 [Blender](https://www.blender.org/) Add-on with extra tools and features.
 

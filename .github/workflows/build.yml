@@ -24,6 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install coverage
         pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
@@ -32,10 +33,18 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Run tests in Python env
+    - name: Cover tests in non-Blender env
       run: |
-        python -m unittest -v
-    - name: Run tests in Blender docker container
+        coverage run -m unittest -v
+        mv .coverage .coverage.non-blender
+    - name: Cover tests inside Blender env
       uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
       with:
-        args: blender -b -P scripts/run_bl_tests_in_blender.py
+        entrypoint: /bin/sh
+        args: scripts/cover_bl_tests_in_blender.sh
+    - name: Combine Coverage results
+      run: |
+        coverage combine
+        coverage report
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v1
