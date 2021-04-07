@@ -39,7 +39,7 @@ jobs:
     - name: Cover tests inside Blender env
       uses: docker://nytimes/blender:2.92-cpu-ubuntu18.04
       with:
-        args: pip install coverage && blender -b -P scripts/run_bl_tests_in_blender.py
+        args: pip install --no-cache-dir coverage && blender -b -P scripts/run_bl_tests_in_blender.py
     - name: Combine Coverage results
       run: |
         coverage combine
