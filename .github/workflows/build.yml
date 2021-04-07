@@ -44,5 +44,6 @@ jobs:
     - name: Combine Coverage results
       run: |
         coverage combine
+        coverage report
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v1
