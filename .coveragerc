@@ -4,9 +4,9 @@ source_pkgs =
     blender_extra_tools
 
 [paths]
-source = 
+github = 
     .
-    /**/.config/blender/*/scripts/addons
+    /github/home/.config/blender/*/scripts/addons
 
 [report]
 exclude_lines =
