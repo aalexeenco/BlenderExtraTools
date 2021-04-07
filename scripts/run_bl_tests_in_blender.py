@@ -1,6 +1,8 @@
 import os
 import sys
 
+from contextlib import contextmanager, nullcontext
+
 
 ADDON = "blender_extra_tools"
 
@@ -34,6 +36,20 @@ def addon_enable_if_not_loaded():
         print("done")
 
 
+@contextmanager
+def code_coverage():
+    from coverage import Coverage
+    cov = Coverage(source_pkgs=[ADDON], data_suffix="blender")
+    cov.start()
+    print("Code coverage started")
+    try:
+        yield
+    finally:
+        cov.stop()
+        cov.save()
+        print("Code coverage stopped and saved")
+
+
 def run_tests():
     try:
         argv = [__file__, "discover", "-p", "bl_test*.py"]
@@ -45,42 +61,50 @@ def run_tests():
 if os.path.basename(sys.argv[0]).startswith("blender"):
     import shutil
     import unittest
-
-    import bpy
     import addon_utils
 
-    addon_module = find_addon()
-    print("Add-on:", addon_module or "not found")
+    try:
+        code_coverage_maybe = code_coverage()
+    except ImportError:
+        code_coverage_maybe = nullcontext()
 
+    exit_code = 0
     remove_addon_on_exit = False
-    if not addon_module:
-        remove_addon_on_exit = addon_zip_and_install()
-
-        bpy.ops.preferences.addon_refresh()
+    with code_coverage_maybe:
+        # start coverage before importing and registering add-on module
+        import bpy
 
         addon_module = find_addon()
-        print("Installed Add-on:", addon_module or "not installed")
+        print("Add-on:", addon_module or "not found")
 
-    bl_info = addon_utils.module_bl_info(addon_module)
-    print("Version:", bl_info.get("version", (-1, -1, -1)))
+        if not addon_module:
+            remove_addon_on_exit = addon_zip_and_install()
 
-    addon_enable_if_not_loaded()
+            bpy.ops.preferences.addon_refresh()
 
-    print("===== Tests =====")
-    exitCode = run_tests()
-    print("=== End Tests ===")
+            addon_module = find_addon()
+            print("Installed Add-on:", addon_module or "not installed")
+
+        bl_info = addon_utils.module_bl_info(addon_module)
+        print("Version:", bl_info.get("version", (-1, -1, -1)))
+
+        addon_enable_if_not_loaded()
+
+        print("===== Tests =====")
+        exit_code = run_tests()
+        print("=== End Tests ===")
 
     if remove_addon_on_exit:
         print("Removing Add-on...", end="", flush=True)
-        path_user_scripts_addons = bpy.utils.user_resource('SCRIPTS', "addons")  # noqa E501
+        path_user_scripts_addons = bpy.utils.user_resource('SCRIPTS', "addons")
         path_addon = os.path.abspath(
             os.path.join(path_user_scripts_addons, f"{ADDON}")
         )
         shutil.rmtree(path_addon)
         print("done")
 
-    print(f"Exit code: {exitCode:d}")
-    sys.exit(exitCode)
+    print(f"Exit code: {exit_code:d}")
+    sys.exit(exit_code)
 else:
     print(f"usage: blender -b -P {__file__}")
     sys.exit(1)
