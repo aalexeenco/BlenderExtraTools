@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml/badge.svg)](https://github.com/aalexeenco/BlenderExtraTools/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/aalexeenco/BlenderExtraTools/branch/main/graph/badge.svg?token=N3HZMD0G7G)](https://codecov.io/gh/aalexeenco/BlenderExtraTools)
-[![version](https://img.shields.io/github/v/release/aalexeenco/BlenderExtraTools)
+[![version](https://img.shields.io/github/v/release/aalexeenco/BlenderExtraTools)](https://github.com/aalexeenco/BlenderExtraTools/releases/latest)
 ![commits since latest release](https://img.shields.io/github/commits-since/aalexeenco/BlenderExtraTools/latest)
 
 [Blender](https://www.blender.org/) Add-on with extra tools and features.
