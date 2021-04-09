@@ -68,7 +68,7 @@ jobs:
         echo "}" >> versions.json
         git add .
         git config --local user.name "github-actions"
-        git config --local user.email "actions@github.com"
+        git config --local user.email "github-actions@github.com"
         git commit -m "Publish docs $RELEASE"
     - name: Deploy to gh-pages
       working-directory: ./publish
