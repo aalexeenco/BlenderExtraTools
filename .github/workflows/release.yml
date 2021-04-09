@@ -15,7 +15,7 @@ jobs:
   build_and_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse docs version
+      - name: Get tag
         id: get-tag
         uses: actions/github-script@v3
         with:
